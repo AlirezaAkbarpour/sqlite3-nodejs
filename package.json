@@ -1,0 +1,15 @@
+{
+  "name": "sqlite3-node",
+  "version": "1.0.0",
+  "description": "nodeJs text data save on sqlite3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aka",
+  "license": "ISC",
+  "dependencies": {
+    "arguments-parser": "^3.2.1",
+    "sqlite3": "^5.1.7"
+  }
+}
