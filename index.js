@@ -5,8 +5,13 @@ const args = require('arguments-parser')({
     offset:2
 })
 
-const main = async ()=>{
+const match = (a)=>{
+    if (a === '-a') return 0;
     
 }
 
-main()
+const main = async ()=>{
+    await args.map((arg)=> match(arg))
+}
+
+main();
