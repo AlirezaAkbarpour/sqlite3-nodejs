@@ -1,3 +1,5 @@
+const { db } = require('./src/sqlite');
+
 const args = require('arguments-parser')({
     explicit:true,
     keepAsArray:true,
@@ -5,13 +7,20 @@ const args = require('arguments-parser')({
     offset:2
 })
 
-const match = (a)=>{
-    if (a === '-a') return 0;
-    
+const match = (args)=>{
+    if(args[1]==='-a')
+        db.run(`INSERT INTO TEXT(text) VALUES(?)`,[args[2]],(error)=> console.error(error))
 }
 
 const main = async ()=>{
-    await args.map((arg)=> match(arg))
+    await db.run(`CREATE TABLE IF NOT EXISTS TEXT (text text)`,(error)=>{
+        if(error) return console.error(error)
+    })
+    try{
+        match(args)
+    } catch(error){
+        console.log(error)
+    }
 }
 
 main();
