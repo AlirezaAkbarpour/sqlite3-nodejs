@@ -9,9 +9,11 @@ const args = require('arguments-parser')({
 
 const match = (args)=>{
     if(args[0]==='-a')
-        setText(args[1])
+        setText(`'hello'`)
     if(args[0]==='-l')
-        console.log(getList())
+        texts = getList()
+        console.log(typeof texts)
+        texts.forEach((text)=>console.log(text))
 }
 
 const main = async ()=>{
