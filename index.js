@@ -1,4 +1,4 @@
-const { db } = require('./src/sqlite');
+const { db, getList,setText } = require('./src/sqlite');
 
 const args = require('arguments-parser')({
     explicit:true,
@@ -8,8 +8,10 @@ const args = require('arguments-parser')({
 })
 
 const match = (args)=>{
-    if(args[1]==='-a')
-        db.run(`INSERT INTO TEXT(text) VALUES(?)`,[args[2]],(error)=> console.error(error))
+    if(args[0]==='-a')
+        setText(args[1])
+    if(args[0]==='-l')
+        console.log(getList())
 }
 
 const main = async ()=>{

@@ -15,11 +15,19 @@ showTb = `select name from sqlite_master WHERE type='table'`
     })
 })*/
 
-db.all(`select text FROM TEXT`),[],(error, rows)=>
+const getList = ()=>{db.all(`select text FROM TEXT`),(error, rows)=>
 { 
     if(error) console.log(error)
-    console.log(rows)
+    return rows;
+}}
+const insert = `INSERT INTO TEXT(text) VALUES(?)`
+const setText = (text)=>{
+    db.run(insert,[text],(error)=>{ return console.error(error)})
 }
 
+db.run(`CREATE TABLE IF NOT EXISTS TEXT (text text)`,(error)=>{
+    if(error) return console.error(error)
+})
+db.run(`DROP TABLE TEXT`,(error)=>{return console.log(error)})
 
-module.exports =  {db};
+module.exports =  {db,getList,setText};
